@@ -1,49 +1,104 @@
+/* 基础配色 */
+:root {
+    --bg-color: #f8f9fa;       /* 极浅灰蓝色背景 */
+    --nav-bg: #d2b4a0;        /* 截图中的浅棕色导航栏 */
+    --text-main: #333333;
+    --accent-color: #1a73e8;  /* 链接蓝 */
+}
+
 body {
     margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #0a0a0a; /* 基础深色 */
-    color: white;
+    font-family: "Open Sans", Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
-/* 动态背景总容器：固定在最底层 */
-#particles-js {
-    position: fixed; /* 固定定位，不随滚动条移动 */
-    width: 100%;
-    height: 100%;
+/* 导航栏 */
+header {
+    background-color: var(--nav-bg);
+    padding: 0 10%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: sticky;
     top: 0;
-    left: 0;
-    z-index: -1; /* 确保在所有内容之下 */
-    /* 将大脑芯片图设为底层背景 */
-    background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('banner.jpg') center/cover no-repeat fixed;
+    z-index: 1000;
 }
 
-.glass-container {
-    position: relative;
-    z-index: 1; /* 确保内容在背景之上 */
-    background: rgba(15, 15, 15, 0.75); /* 深色半透明，解决“太白”看不清的问题 */
-    backdrop-filter: blur(12px); /* 磨砂玻璃效果 */
-    -webkit-backdrop-filter: blur(12px);
-    max-width: 950px;
-    margin: 60px auto;
-    border-radius: 20px;
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+nav a.active {
+    border-bottom: 3px solid #000;
+    padding-bottom: 12px;
+}
+
+/* 布局容器 */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #ffffff; /* 主内容区白色，形成对比 */
     padding: 50px;
-    border: 1px solid rgba(210, 180, 160, 0.2);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.static-bio p {
-    font-size: 1.15rem;
-    color: #f0f0f0; /* 调亮文字颜色 */
-    margin: 10px 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* 增加文字阴影，防止背景干扰 */
+/* 个人介绍 */
+.profile-flex {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.pub-item {
-    background: rgba(255, 255, 255, 0.05);
-    margin: 20px 0;
-    padding: 20px;
-    border-radius: 12px;
-    border-left: 4px solid #d2b4a0;
+.profile-img {
+    width: 200px;
+    height: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-/* 其他样式保持不变... */
+
+h1 { font-size: 1.8rem; margin: 0 0 15px 0; }
+.bio-line { margin: 5px 0; font-size: 1.05rem; color: #666; }
+
+/* 论文列表 */
+.section-divider { border: 0; border-top: 1px solid #eee; margin: 40px 0; }
+.section-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 25px; }
+
+ol li {
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #333;
+    padding-left: 10px;
+}
+
+strong { color: #000; }
+em { font-weight: 600; font-style: normal; } /* 模拟截图中的加粗期刊名 */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .profile-flex { flex-direction: column; text-align: center; }
+    .container { padding: 20px; }
+}
