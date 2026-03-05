@@ -3,117 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bingjie Dang</title>
+    <title>Bingjie Dang - Home</title>
     <style>
-        /* 强制覆盖为浅色主题 - 完美复刻 Google Sites */
+        /* 全局基础设置：白灰色背景，黑色字体 */
         :root {
-            --bg-light-gray: #f8f9fa; /* 浅灰底色 */
-            --text-dark: #202124;     /* 黑色/深灰字体 */
-            --nav-bg: #d2b4a0;        /* 顶部导航栏浅棕色 */
-            --link-color: #1a73e8;    /* 蓝色链接 */
+            --bg-color: #f8f9fa;     /* 浅灰白背景 */
+            --content-bg: #ffffff;   /* 内容区纯白 */
+            --text-color: #202124;   /* 谷歌标准黑灰字体 */
+            --header-bg: #dcbca1;    /* 完美匹配截图的浅棕色顶栏 */
+            --button-hover: #c9a588; /* 按钮悬浮变深 */
+            --link-blue: #1a73e8;    /* 邮箱链接蓝色 */
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: var(--bg-light-gray); /* 浅色背景生效 */
-            color: var(--text-dark); /* 黑色字体生效 */
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            scroll-behavior: smooth; /* 点击按钮时平滑滚动跳转 */
         }
 
-        /* 导航栏 */
+        /* 顶部导航栏 */
         header {
-            background-color: var(--nav-bg);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            padding: 15px 10%;
+            background-color: var(--header-bg);
+            padding: 15px 5%;
             display: flex;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
         }
-        
-        .header-title { 
-            font-weight: bold; 
-            font-size: 1.2rem; 
-            margin-right: 40px; 
+
+        .site-title {
+            font-size: 1.3rem;
+            font-weight: bold;
             color: #000;
+            margin-right: auto; /* 将标题推到最左边 */
         }
-        
+
+        /* 导航按钮样式 */
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+
         nav a {
             text-decoration: none;
             color: #000;
-            font-weight: 500;
-            margin-right: 20px;
             font-size: 0.9rem;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px; /* 按钮圆角 */
+            transition: background-color 0.2s, transform 0.1s;
         }
-        
-        nav a:hover { text-decoration: underline; }
 
-        /* 主内容白板 */
+        nav a:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px); /* 悬浮时按钮微微浮起 */
+        }
+
+        /* 主内容区域 (白板) */
         .container {
-            max-width: 960px;
+            max-width: 1000px;
             margin: 40px auto;
-            background-color: #ffffff; /* 白底黑字的内容区 */
-            padding: 50px 60px;
+            background-color: var(--content-bg);
+            padding: 60px 80px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* 个人资料排版 */
+        /* 个人简介排版 */
         .profile-section {
             display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-        
-        .profile-img { 
-            width: 180px; 
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15); 
-        }
-        
-        .profile-info ul { 
-            list-style: none; 
-            padding: 0; 
-            margin: 0; 
-            font-size: 1.1rem; 
-        }
-        
-        .profile-info li { margin-bottom: 8px; }
-        
-        .profile-info a { 
-            color: var(--link-color); 
-            text-decoration: none; 
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
         }
 
-        /* 论文列表排版 */
-        .publications h2 {
+        /* 圆形照片强制设置 */
+        .profile-img {
+            width: 220px;
+            height: 220px; /* 必须宽高一致 */
+            object-fit: cover; /* 保证照片不变形 */
+            border-radius: 50%; /* 裁切为绝对的圆形 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .profile-text {
+            font-size: 1.15rem;
+        }
+
+        .profile-text p {
+            margin: 8px 0;
+        }
+
+        .profile-text a {
+            color: var(--link-blue);
+            text-decoration: none;
+        }
+
+        /* 文献列表排版 */
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .year-title {
             font-size: 1.2rem;
             font-weight: bold;
-            border-bottom: 1px solid #dadce0;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            color: #000;
-        }
-        
-        .pub-list { padding-left: 20px; }
-        
-        .pub-list li { 
-            margin-bottom: 18px; 
-            font-size: 1rem; 
-            color: #333; 
-            text-align: justify; 
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
 
-        footer { 
-            text-align: center; 
-            padding: 20px; 
-            color: #5f6368; 
-            font-size: 0.9rem; 
+        .pub-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .pub-list li {
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-align: justify;
+            padding-left: 20px;
+            text-indent: -20px; /* 悬挂缩进，让第二行对齐 */
+        }
+
+        .pub-list em {
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="header-title">Bingjie Dang</div>
+        <div class="site-title">Bingjie Dang</div>
         <nav>
             <a href="#home">HOME</a>
             <a href="#research">RESEARCH</a>
@@ -126,34 +164,97 @@
     </header>
 
     <div class="container">
-        <section class="profile-section" id="home">
+        
+        <section id="home" class="profile-section">
             <img src="profile.jpeg" alt="Dr. Bingjie Dang" class="profile-img">
-            <div class="profile-info">
-                <ul>
-                    <li><strong>Dr. Bingjie Dang</strong></li>
-                    <li><em><strong>Research Fellow</strong></em></li>
-                    <li><strong>College of Design and Engineering,</strong></li>
-                    <li><strong>National University of Singapore</strong></li>
-                    <li><strong>Email:</strong> <a href="mailto:bing.joe@nus.edu.sg">bing.joe@nus.edu.sg</a></li>
-                </ul>
+            <div class="profile-text">
+                <p><strong>Dr. Bingjie Dang</strong></p>
+                <p><em><strong>Research Fellow</strong></em></p>
+                <p><strong>College of Design and Engineering,</strong></p>
+                <p><strong>National University of Singapore</strong></p>
+                <p><strong>Email:</strong> <a href="mailto:bing.joe@nus.edu.sg">bing.joe@nus.edu.sg</a></p>
             </div>
         </section>
 
-        <section class="publications" id="publications">
-            <h2>Selected current articles:</h2>
-            <ol class="pub-list">
-                <li>Tao Zeng‡, Zhongran Liu‡, Youdi Gu‡, <strong>Bingjie Dang‡</strong>, Yuan Gao, Tianlong Xu, Peng Li, Shu Shi, Kaixuan Sun, Yao Zhu, Xiao Gong, He Tian, & Jingsheng Chen. "A Nitride Based Non-Volatile Memory Enabled by Electric-Field-Induced Phase Transition," <em>Nature Materials</em>, 2026 (Accepted). <strong>‡Equal contributions</strong></li>
+        <section id="publications">
+            <h2 class="section-title">Selected current articles:</h2>
+            
+            <div class="year-title">2026</div>
+            <ul class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Teng Zhang, Fanqi Meng, Keqin Liu, Liutao Yu, Qinghua Zhang, Si Wu, Lin Gu, Ru Huang, Yuchao Yang. "Spiking neural networks with fatigue spike-timing-dependent plasticity learning using hybrid memristor arrays," <em>Nature Electronics</em> 9, 213–224, 2026.</li>
-                <li><strong>Bingjie Dang</strong>, Kaixuan Sun, Hanxin Su, Jiaxin Chen, Pengyu Yao, Tao Zeng, Shu Shi, Guowei Zhou, Liang Liu, Xiaohong Xu, Jingsheng Chen, "HZO/HSO Superlattice ReFET Array Integrating Optical Sensing for Neuromorphic Vision Computing," <em>Advanced Materials</em>, e08889, 2025.</li>
-                <li><strong>Bingjie Dang</strong>, Teng Zhang, Keqin Liu, Ru Huang, Yuchao Yang, "Reconfigurable Optic In-Sensor Processing Based on a Multi-Phototransistors-One-Memristor Array," <em>Nature Electronics</em> 7(11), 991–1003, 2024.</li>
-                <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Teng Zhang, Xiulong Wu, Yuchao Yang, "Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons," <em>Science Advances</em> 10, 2024, eadl2767. <strong>‡Equal contributions</strong></li>
-                <li><strong>Bingjie Dang</strong>, Keqin Liu, xulei wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang, "One-phototransistor-one-memristor Array with High-linearityLight-tunable Weight for Optic Neuromorphic Computing," <em>Advanced Materials</em>, 2022, 2204844, (doi:10.1002/adma.202204844).</li>
-            </ol>
+                <li>Tao Zeng‡, Zhongran Liu‡, Youdi Gu‡, <strong>Bingjie Dang‡</strong>, Yuan Gao, Tianlong Xu, Peng Li, Shu Shi, Kaixuan Sun, Yao Zhu, Xiao Gong, He Tian, & Jingsheng Chen. "A Nitride Based Non-Volatile Memory Enabled by Electric-Field-Induced Phase Transition," <em>Nature Materials</em>, 2026 (Accepted) <strong>‡Equal contributions</strong></li>
+            </ul>
+
+            <div class="year-title">2025</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Kaixuan Sun, Hanxin Su, Jiaxin Chen, Pengyu Yao, Tao Zeng, Shu Shi, Guowei Zhou, Liang Liu, Xiaohong Xu and Jingsheng Chen, "HZO/HSO Superlattice ReFET Array Integrating Optical Sensing for Neuromorphic Vision Computing," <em>Advanced Materials</em>, e08889, 2025.</li>
+            </ul>
+
+            <div class="year-title">2024</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Teng Zhang, Keqin Liu, Ru Huang, and Yuchao Yang, “Reconfigurable Optic In-Sensor Processing Based on a Multi-Phototransistors-One-Memristor Array,” <em>Nature Electronics</em> 7(11), 991–1003, 2024.</li>
+                <li>Jinxuan Bai, Dawei He, <strong>Bingjie Dang</strong>, Keqin Liu, Zhen Yang, Jiarong Wang, Xiaoxian Zhang, Yongsheng Wang, Yaoyu Tao, Yuchao Yang, Full van der Waals ambipolar ferroelectric configurable optical hetero-synapses for in-sensor computing. <em>Advanced Materials</em>, 2401060, 2024.</li>
+                <li>Keqin Liu, <strong>Bingjie Dang</strong>, Zhiyu Yang, Teng Zhang, Zhen Yang, Jinxuan Bai, Zelun Pan, Ru Huang, Yuchao Yang, Tuning the ferroelectricity of Hf0.5Zr0.5O2 with alloy electrodes, <em>Science China Information Sciences</em> 67, 2024 (8), 1-10.</li>
+                <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Teng Zhang, Xiulong Wu, Yuchao Yang, Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons, <em>Science Advances</em> 10, 2024, eadl2767. <strong>‡Equal contributions</strong></li>
+                <li>Zhen Yang, Wenshuo Yue, Chang Liu, Yaoyu Tao, Pek Jun Tiw, Longhao Yan, Yuxiang Yang, Teng Zhang, <strong>Bingjie Dang</strong>, Keqin Liu, Xiaodong He, Yongqin Wu, Weihai Bu, Kai Zheng, Jin Kang, Ru Huang, Yuchao Yang, Fully Hardware Memristive Neuromorphic Computing Enabled by the Integration of Trainable Dendritic Neurons and High-Density RRAM Chip. <em>Advanced Functional Materials</em>, 2024, 2405618.</li>
+            </ul>
+
+            <div class="year-title">2023</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Keqin Liu, Xulei Wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang，One-Phototransistor–One-Memristor Array with High-Linearity Light-Tunable Weight for Optic Neuromorphic Computing，<em>Adv. Mater.</em> 37. 2023. 2370262.</li>
+                <li>Zhen Yang, Teng Zhang, Keqin Liu, <strong>Bingjie Dang</strong>, Liying Xu, Yuchao Yang, Ru Huang, Neuromorphic Artificial Vision Systems Based on Reconfigurable Ion-Modulated Memtransistors, <em>Advanced Intelligent Systems</em> 5, 2023, 2300026.</li>
+            </ul>
+
+            <div class="year-title">2022</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Keqin Liu, xulei wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang, "One-phototransistor-one-memristor Array with High-linearityLight-tunable Weight for Optic Neuromorphic Computing," <em>Adv. Mater.</em>, 2022, 2204844, (doi:10.1002/adma.202204844) <strong>Cover Article</strong></li>
+                <li>Caidie Cheng, Yanghao Wang, Liying Xu, Keqin Liu, <strong>Bingjie Dang</strong>, Yingming Lu, Xiaoqin Yan, Ru Huang, and Yuchao Yang. "Artificial Astrocyte Memristor with Recoverable Linearity for Neuromorphic Computing," <em>Advanced Electronic Materials</em>, 2100669, Sept. 2021. (doi: 10.1002/aelm.202100669)</li>
+                <li><strong>Bingjie Dang</strong>, Ling Lv, Hong Wang, Lei Cai, Bonan Yan, Keqin Liu, Liying Xu, Yue Hao, Ru Huang, Yuchao Yang, "1-HEMT-1-Memristor with Hardware Encryptor for Privacy-Preserving Image Processing," <em>IEEE Electron Device Letters</em>, 22, Jun. 2022, (doi: 10.1109/LED.2022.3182945)</li>
+                <li>Keqin Liu, <strong>Bingjie Dang</strong>, Teng Zhang, Zhen Yang, Lin Bao, Liying Xu, Caidie Cheng, Ru Huang, Yuchao Yang, "Multilayer Reservoir Computing Based on Ferroelectric α-In2Se3 for Hierarchical Information Processing," <em>Adv. Mater.</em>, 2022, 2108826, (doi:10.1002/adma.202108826)</li>
+                <li>Keqin Liu, Teng Zhang, <strong>Bingjie Dang</strong>, Lin Bao, Liying Xu, Caidie Cheng, Zhen Yang, Ru Huang & Yuchao Yang. An optoelectronic synapse based on α-In2Se3 with controllable temporal dynamics for multimode and multiscale reservoir computing. <em>Nat Electron</em> 5, 761–773 (2022). https://doi.org/10.1038/s41928-022-00847-2</li>
+                <li>Liying Xu, Jiadi Zhu, Bing Chen, Zhen Yang, Keqin Liu, <strong>Bingjie Dang</strong>, Teng Zhang, Yuchao Yang & Ru Huang, "A distributed nanocluster based multi-agent evolutionary network," <em>Nat. Commun.</em> 13, 4698 (2022). (doi:10.1038/s41467-022-32497-5)</li>
+            </ul>
+
+            <div class="year-title">2021</div>
+            <ul class="pub-list">
+                <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Hong Wang, Xiulong Xu, Yuchao Yang, "Spike-Enabled Audio Learning in Multilevel SynapticMemristor Array-Based Spiking Neural Network," <em>Adv. Intell. Syst.</em> 2021, 2100151. (doi: 10.1002/aisy.202100151). <strong>‡Equal contributions</strong></li>
+                <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Diode wiht ultrathin thunneling layer as selector for bipolar one diode-one resistor memory," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 6, April. 2021. (doi:10.1109/LED.2021.3064081)</li>
+                <li>Caidie Cheng, Keqin Liu, <strong>Bingjie Dang</strong>, Living Xu, Zhen Yang, Xiaoqin Yan, Yuchao Yang, Ru Huang. "Hf1-xZrxO2based bipolar selector with high uniformity and high selectivity for large-scale integration of memristor crossbars," <em>EDTM</em>, 2021. (10.1109/EDTM50988.2021.9421007)</li>
+            </ul>
+
+            <div class="year-title">2020</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Lan Ma, Longhao Yan, Saisai Wang, Keqin Liu, Liying Xu, Caidie Cheng, Momo Zhao, Yuchao Yang, Hong Wang, Yue Hao and Ru Huang, "Physically Transient Optic-Neural Synapse for Secure In-Sensor Computing," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 8, Oct. 2020. (doi:10.1109/LED.2020.3025791)</li>
+                <li>Quantan Wu‡, <strong>Bingjie Dang‡</strong>, Congyan Lu, Guangwei Xu, Guanhua Yang, Jiawei Wang, Xichen Chuai, Nianduan Lu, Di Geng, Hong Wang, and Ling Li, "Spike Encoding with Optic Sensory Neurons Enable a pulse Coupled Neural Network for Ultraviolet Image Segmentation," <em>Nano Letters</em>, Oct. 2020. (doi:10.1021/acs.nanolett.0c02892.). <strong>‡Equal contributions</strong></li>
+                <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Fang Song, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Resistive Memory With Programmable Switching Behaviors in MgO-Mo Based Devices," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 4, April. 2020. (doi:10.1109/LED.2020.2974967)</li>
+                <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient W/ZnO/MgO/W Schottky Diode for Rectifying and Artificial Synapse," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 6, June. 2020. (doi:10.1109/LED.2020.2974967)</li>
+                <li>Yingming Lu, Keqin Liu, Jingjing Yang, Jiadi Zhu, Teng Zhang, Caidie Cheng, <strong>Bingjie Dang</strong>, Liying Xu, Qianqian Huang, Yuchao Yang, and Ru Huang, "Highly Uniform Two-Terminal Artificial Synapses Based on Polycrystalline Hf0.5Zr0.5O2 for Sparsified Back Propagation Networks," <em>Advanced Electronic Materials</em>, Vol. 6, no. 8, July. 2020. (doi: 10.1002/aelm.202000204)</li>
+                <li>Jingjing Yang, Jiadi Zhu, <strong>Bingjie Dang</strong>, Teng Zhang, Qingxi Duan, Liying Xu, Keqin Liu, Zhiting Lin, Ru Huang, and Yuchao Yang. "TaOx synapse array based on ion profile engineering for high accuracy neuromorpic computing," <em>SCTIC</em>, 2020. (doi: 10.1109/CSTIC49141.2020.9282508)</li>
+            </ul>
+
+            <div class="year-title">2019</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Quantan Wu, Jing Sun, Momo Zhao, Saisai Wang, Fang Song, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Memristor Synapse Based on Embedding Magnesium Nanolayer in Oxide for Security Neuromorphic Electronics," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 8, Aug. 2019. (doi:10.1109/LED.2019.2921322) <strong>Cover Article</strong></li>
+                <li><strong>Bingjie Dang</strong>, Jing Sun, Teng Zhang, Saisai Wang, Momo Zhao, Keqin Liu, Liying Xu, Jiadi Zhu, Caidie Cheng, Lin Bao, Yuchao Yang, Hong Wang, Yue Hao, and Ru Huang, "Physically Transient True Random Number Generators Based on Paired Threshold Switches Enabling Monte Carlo Method Applications," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 7, July. 2019. (doi:10.1109/LED.2019.2919914)</li>
+                <li><strong>Bingjie Dang</strong>, Keqin Liu, Jiadi Zhu, Liying Xu, Teng Zhang, Caidie Cheng, Hong Wang, Yuchao Yang, Yue Hao, and Ru Huang, "Stochastic neuron based on IGZO Schottky diodes for neuromorphic computing," <em>APL Materials</em> 7, 071114 (2019). (doi:10.1063/1.5109090)</li>
+                <li>Fang Song, Hong Wang, Jing Sun, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Solution-Processed Physically Transient Resistive Memory Based on Magnesium Oxide," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 2, Feb. 2019. (doi:10.1109/LED.2018.2886380)</li>
+                <li>Jing Sun, Hong Wang, Zhan Wang, Fang Song, Qing Zhu, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Physically Transient Memristive Synapse With Short-Term Plasticity Based on Magnesium Oxide," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 5, May. 2019. (doi:10.1109/LED.2019.2904752)</li>
+                <li>Quantan Wu, Guanhua Yang, Congyan Lu, Guangwei Xu; Jiawei Wang, <strong>Bingjie Dang</strong>, Yuxin Gong, Xuewen Shi, Xichen Chuai, Nianduan Lu, Di Geng, Hong Wang, Ling Li, and Ming Liu, "Room Temperature-Processed a-IGZO Schottky Diode for Rectifying Circuit and Bipolar 1D1R Crossbar Applications," <em>IEEE Transactions on Electron Devices</em>, Vol. 66, no. 9, Sept. 2019. (doi:10.1109/TED.2019.2928792)</li>
+            </ul>
+
+            <div class="year-title">2018</div>
+            <ul class="pub-list">
+                <li><strong>Bingjie Dang</strong>, Quantan Wu, Fang Song, Jing Sun, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "A bio-inspired physically transient/biodegradable synapse for security neuromorphic computing based on memristors," <em>Nanoscale</em>, 2018, 10, 20089-20095. (doi:10.1039/C8NR07442A)</li>
+                <li>Jing Sun, Hong Wang, Fang Song, Zhan Wang, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Physically Transient Threshold Switching Device Based on Magnesium Oxide for Security Application," <em>Small</em>, Vol. 14, no. 7, May. 2018. (doi: 10.1002/smll.201800945)</li>
+                <li>Jing Sun, Hong Wang, Fang Song, Zhan Wang, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Secure Electronics: Physically Transient Threshold Switching Device Based on Magnesium Oxide for Security Application," <em>Small</em>, 180094, May. 2018. (<strong>Cover</strong>, doi: 10.1002/smll.201870127105)</li>
+            </ul>
         </section>
+
     </div>
 
     <footer>
         <p>&copy; 2026 Bingjie Dang</p>
     </footer>
+
 </body>
 </html>
