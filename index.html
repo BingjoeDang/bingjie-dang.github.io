@@ -48,7 +48,6 @@
             gap: 10px;
         }
 
-        /* 真正的按钮样式 */
         .nav-btn {
             background: none;
             border: none;
@@ -67,7 +66,6 @@
             transform: translateY(-2px);
         }
 
-        /* 当前激活的按钮样式 */
         .nav-btn.active {
             background-color: rgba(0,0,0,0.1);
             border-bottom: 3px solid #000;
@@ -82,10 +80,9 @@
             background-color: var(--content-bg);
             padding: 60px 80px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            min-height: 70vh; /* 确保内容少时页面也不会太短 */
+            min-height: 70vh;
         }
 
-        /* 页面切换逻辑（默认只显示 Home） */
         .page-section {
             display: none;
             animation: fadeIn 0.4s ease-in-out;
@@ -108,7 +105,6 @@
             margin-bottom: 60px;
         }
 
-        /* 圆形照片强制设置 */
         .profile-img {
             width: 220px;
             height: 220px;
@@ -121,7 +117,7 @@
         .profile-text p { margin: 8px 0; }
         .profile-text a { color: var(--link-blue); text-decoration: none; }
 
-        /* ================= 文献列表通用排版 ================= */
+        /* ================= 文献列表排版 (修复两端对齐与序号) ================= */
         .section-title {
             font-size: 1.4rem;
             font-weight: bold;
@@ -142,17 +138,17 @@
             border-radius: 4px;
         }
 
+        /* 有序列表样式 */
         .pub-list {
-            padding-left: 0;
-            list-style: none;
+            padding-left: 25px; /* 仅保留刚好容纳数字序号的左边距 */
+            margin-left: 0;
         }
 
         .pub-list li {
             margin-bottom: 20px;
             font-size: 1rem;
-            text-align: justify;
-            padding-left: 20px;
-            text-indent: -20px; /* 悬挂缩进 */
+            text-align: justify; /* 关键：文字两端对齐 */
+            padding-left: 5px;   /* 序号和文字之间稍微留一点空隙 */
         }
 
         .pub-list em { font-style: italic; font-weight: 600; }
@@ -192,14 +188,14 @@
 
             <section>
                 <h2 class="section-title">Selected current articles:</h2>
-                <ul class="pub-list">
+                <ol class="pub-list">
                     <li>Tao Zeng‡, Zhongran Liu‡, Youdi Gu‡, <strong>Bingjie Dang‡</strong>, Yuan Gao, Tianlong Xu, Peng Li, Shu Shi, Kaixuan Sun, Yao Zhu, Xiao Gong, He Tian, & Jingsheng Chen. "A Nitride Based Non-Volatile Memory Enabled by Electric-Field-Induced Phase Transition," <em>Nature Materials</em>, 2026 (Accepted) <strong>‡Equal contributions</strong></li>
                     <li><strong>Bingjie Dang</strong>, Teng Zhang, Fanqi Meng, Keqin Liu, Liutao Yu, Qinghua Zhang, Si Wu, Lin Gu, Ru Huang, Yuchao Yang. "Spiking neural networks with fatigue spike-timing-dependent plasticity learning using hybrid memristor arrays," <em>Nature Electronics</em> 9, 213–224, 2026.</li>
                     <li><strong>Bingjie Dang</strong>, Kaixuan Sun, Hanxin Su, Jiaxin Chen, Pengyu Yao, Tao Zeng, Shu Shi, Guowei Zhou, Liang Liu, Xiaohong Xu and Jingsheng Chen, "HZO/HSO Superlattice ReFET Array Integrating Optical Sensing for Neuromorphic Vision Computing," <em>Advanced Materials</em>, e08889, 2025.</li>
                     <li><strong>Bingjie Dang</strong>, Teng Zhang, Keqin Liu, Ru Huang, and Yuchao Yang, “Reconfigurable Optic In-Sensor Processing Based on a Multi-Phototransistors-One-Memristor Array,” <em>Nature Electronics</em> 7(11), 991–1003, 2024.</li>
                     <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Teng Zhang, Xiulong Wu, Yuchao Yang, Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons, <em>Science Advances</em> 10, 2024, eadl2767. <strong>‡Equal contributions</strong></li>
                     <li><strong>Bingjie Dang</strong>, Keqin Liu, xulei wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang, "One-phototransistor-one-memristor Array with High-linearityLight-tunable Weight for Optic Neuromorphic Computing," <em>Adv. Mater.</em>, 2022, 2204844, (doi:10.1002/adma.202204844)</li>
-                </ul>
+                </ol>
             </section>
         </div>
 
@@ -207,74 +203,74 @@
             <h2 class="section-title">Full Publications List</h2>
             
             <div class="year-title">2026</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Teng Zhang, Fanqi Meng, Keqin Liu, Liutao Yu, Qinghua Zhang, Si Wu, Lin Gu, Ru Huang, Yuchao Yang. "Spiking neural networks with fatigue spike-timing-dependent plasticity learning using hybrid memristor arrays," <em>Nature Electronics</em> 9, 213–224, 2026.</li>
                 <li>Tao Zeng‡, Zhongran Liu‡, Youdi Gu‡, <strong>Bingjie Dang‡</strong>, Yuan Gao, Tianlong Xu, Peng Li, Shu Shi, Kaixuan Sun, Yao Zhu, Xiao Gong, He Tian, & Jingsheng Chen. "A Nitride Based Non-Volatile Memory Enabled by Electric-Field-Induced Phase Transition," <em>Nature Materials</em>, 2026 (Accepted) <strong>‡Equal contributions</strong></li>
-            </ul>
+            </ol>
 
             <div class="year-title">2025</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Kaixuan Sun, Hanxin Su, Jiaxin Chen, Pengyu Yao, Tao Zeng, Shu Shi, Guowei Zhou, Liang Liu, Xiaohong Xu and Jingsheng Chen, "HZO/HSO Superlattice ReFET Array Integrating Optical Sensing for Neuromorphic Vision Computing," <em>Advanced Materials</em>, e08889, 2025.</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2024</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Teng Zhang, Keqin Liu, Ru Huang, and Yuchao Yang, “Reconfigurable Optic In-Sensor Processing Based on a Multi-Phototransistors-One-Memristor Array,” <em>Nature Electronics</em> 7(11), 991–1003, 2024.</li>
                 <li>Jinxuan Bai, Dawei He, <strong>Bingjie Dang</strong>, Keqin Liu, Zhen Yang, Jiarong Wang, Xiaoxian Zhang, Yongsheng Wang, Yaoyu Tao, Yuchao Yang, Full van der Waals ambipolar ferroelectric configurable optical hetero-synapses for in-sensor computing. <em>Advanced Materials</em>, 2401060, 2024.</li>
                 <li>Keqin Liu, <strong>Bingjie Dang</strong>, Zhiyu Yang, Teng Zhang, Zhen Yang, Jinxuan Bai, Zelun Pan, Ru Huang, Yuchao Yang, Tuning the ferroelectricity of Hf0.5Zr0.5O2 with alloy electrodes, <em>Science China Information Sciences</em> 67, 2024 (8), 1-10.</li>
                 <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Teng Zhang, Xiulong Wu, Yuchao Yang, Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons, <em>Science Advances</em> 10, 2024, eadl2767. <strong>‡Equal contributions</strong></li>
                 <li>Zhen Yang, Wenshuo Yue, Chang Liu, Yaoyu Tao, Pek Jun Tiw, Longhao Yan, Yuxiang Yang, Teng Zhang, <strong>Bingjie Dang</strong>, Keqin Liu, Xiaodong He, Yongqin Wu, Weihai Bu, Kai Zheng, Jin Kang, Ru Huang, Yuchao Yang, Fully Hardware Memristive Neuromorphic Computing Enabled by the Integration of Trainable Dendritic Neurons and High-Density RRAM Chip. <em>Advanced Functional Materials</em>, 2024, 2405618.</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2023</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Keqin Liu, Xulei Wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang，One-Phototransistor–One-Memristor Array with High-Linearity Light-Tunable Weight for Optic Neuromorphic Computing，<em>Adv. Mater.</em> 37. 2023. 2370262.</li>
                 <li>Zhen Yang, Teng Zhang, Keqin Liu, <strong>Bingjie Dang</strong>, Liying Xu, Yuchao Yang, Ru Huang, Neuromorphic Artificial Vision Systems Based on Reconfigurable Ion-Modulated Memtransistors, <em>Advanced Intelligent Systems</em> 5, 2023, 2300026.</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2022</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Keqin Liu, xulei wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang, "One-phototransistor-one-memristor Array with High-linearityLight-tunable Weight for Optic Neuromorphic Computing," <em>Adv. Mater.</em>, 2022, 2204844, (doi:10.1002/adma.202204844) <strong>Cover Article</strong></li>
                 <li>Caidie Cheng, Yanghao Wang, Liying Xu, Keqin Liu, <strong>Bingjie Dang</strong>, Yingming Lu, Xiaoqin Yan, Ru Huang, and Yuchao Yang. "Artificial Astrocyte Memristor with Recoverable Linearity for Neuromorphic Computing," <em>Advanced Electronic Materials</em>, 2100669, Sept. 2021. (doi: 10.1002/aelm.202100669)</li>
                 <li><strong>Bingjie Dang</strong>, Ling Lv, Hong Wang, Lei Cai, Bonan Yan, Keqin Liu, Liying Xu, Yue Hao, Ru Huang, Yuchao Yang, "1-HEMT-1-Memristor with Hardware Encryptor for Privacy-Preserving Image Processing," <em>IEEE Electron Device Letters</em>, 22, Jun. 2022, (doi: 10.1109/LED.2022.3182945)</li>
                 <li>Keqin Liu, <strong>Bingjie Dang</strong>, Teng Zhang, Zhen Yang, Lin Bao, Liying Xu, Caidie Cheng, Ru Huang, Yuchao Yang, "Multilayer Reservoir Computing Based on Ferroelectric α-In2Se3 for Hierarchical Information Processing," <em>Adv. Mater.</em>, 2022, 2108826, (doi:10.1002/adma.202108826)</li>
                 <li>Keqin Liu, Teng Zhang, <strong>Bingjie Dang</strong>, Lin Bao, Liying Xu, Caidie Cheng, Zhen Yang, Ru Huang & Yuchao Yang. An optoelectronic synapse based on α-In2Se3 with controllable temporal dynamics for multimode and multiscale reservoir computing. <em>Nat Electron</em> 5, 761–773 (2022). https://doi.org/10.1038/s41928-022-00847-2</li>
                 <li>Liying Xu, Jiadi Zhu, Bing Chen, Zhen Yang, Keqin Liu, <strong>Bingjie Dang</strong>, Teng Zhang, Yuchao Yang & Ru Huang, "A distributed nanocluster based multi-agent evolutionary network," <em>Nat. Commun.</em> 13, 4698 (2022). (doi:10.1038/s41467-022-32497-5)</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2021</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Hong Wang, Xiulong Xu, Yuchao Yang, "Spike-Enabled Audio Learning in Multilevel SynapticMemristor Array-Based Spiking Neural Network," <em>Adv. Intell. Syst.</em> 2021, 2100151. (doi: 10.1002/aisy.202100151). <strong>‡Equal contributions</strong></li>
                 <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Diode wiht ultrathin thunneling layer as selector for bipolar one diode-one resistor memory," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 6, April. 2021. (doi:10.1109/LED.2021.3064081)</li>
                 <li>Caidie Cheng, Keqin Liu, <strong>Bingjie Dang</strong>, Living Xu, Zhen Yang, Xiaoqin Yan, Yuchao Yang, Ru Huang. "Hf1-xZrxO2based bipolar selector with high uniformity and high selectivity for large-scale integration of memristor crossbars," <em>EDTM</em>, 2021. (10.1109/EDTM50988.2021.9421007)</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2020</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Lan Ma, Longhao Yan, Saisai Wang, Keqin Liu, Liying Xu, Caidie Cheng, Momo Zhao, Yuchao Yang, Hong Wang, Yue Hao and Ru Huang, "Physically Transient Optic-Neural Synapse for Secure In-Sensor Computing," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 8, Oct. 2020. (doi:10.1109/LED.2020.3025791)</li>
                 <li>Quantan Wu‡, <strong>Bingjie Dang‡</strong>, Congyan Lu, Guangwei Xu, Guanhua Yang, Jiawei Wang, Xichen Chuai, Nianduan Lu, Di Geng, Hong Wang, and Ling Li, "Spike Encoding with Optic Sensory Neurons Enable a pulse Coupled Neural Network for Ultraviolet Image Segmentation," <em>Nano Letters</em>, Oct. 2020. (doi:10.1021/acs.nanolett.0c02892.). <strong>‡Equal contributions</strong></li>
                 <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Fang Song, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Resistive Memory With Programmable Switching Behaviors in MgO-Mo Based Devices," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 4, April. 2020. (doi:10.1109/LED.2020.2974967)</li>
                 <li>Saisai Wang, <strong>Bingjie Dang</strong>, Jing Sun, Momo Zhao, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient W/ZnO/MgO/W Schottky Diode for Rectifying and Artificial Synapse," <em>IEEE Electron Device Letter</em>, Vol. 41, no. 6, June. 2020. (doi:10.1109/LED.2020.2974967)</li>
                 <li>Yingming Lu, Keqin Liu, Jingjing Yang, Jiadi Zhu, Teng Zhang, Caidie Cheng, <strong>Bingjie Dang</strong>, Liying Xu, Qianqian Huang, Yuchao Yang, and Ru Huang, "Highly Uniform Two-Terminal Artificial Synapses Based on Polycrystalline Hf0.5Zr0.5O2 for Sparsified Back Propagation Networks," <em>Advanced Electronic Materials</em>, Vol. 6, no. 8, July. 2020. (doi: 10.1002/aelm.202000204)</li>
                 <li>Jingjing Yang, Jiadi Zhu, <strong>Bingjie Dang</strong>, Teng Zhang, Qingxi Duan, Liying Xu, Keqin Liu, Zhiting Lin, Ru Huang, and Yuchao Yang. "TaOx synapse array based on ion profile engineering for high accuracy neuromorpic computing," <em>SCTIC</em>, 2020. (doi: 10.1109/CSTIC49141.2020.9282508)</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2019</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Quantan Wu, Jing Sun, Momo Zhao, Saisai Wang, Fang Song, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "Physically Transient Memristor Synapse Based on Embedding Magnesium Nanolayer in Oxide for Security Neuromorphic Electronics," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 8, Aug. 2019. (doi:10.1109/LED.2019.2921322) <strong>Cover Article</strong></li>
                 <li><strong>Bingjie Dang</strong>, Jing Sun, Teng Zhang, Saisai Wang, Momo Zhao, Keqin Liu, Liying Xu, Jiadi Zhu, Caidie Cheng, Lin Bao, Yuchao Yang, Hong Wang, Yue Hao, and Ru Huang, "Physically Transient True Random Number Generators Based on Paired Threshold Switches Enabling Monte Carlo Method Applications," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 7, July. 2019. (doi:10.1109/LED.2019.2919914)</li>
                 <li><strong>Bingjie Dang</strong>, Keqin Liu, Jiadi Zhu, Liying Xu, Teng Zhang, Caidie Cheng, Hong Wang, Yuchao Yang, Yue Hao, and Ru Huang, "Stochastic neuron based on IGZO Schottky diodes for neuromorphic computing," <em>APL Materials</em> 7, 071114 (2019). (doi:10.1063/1.5109090)</li>
                 <li>Fang Song, Hong Wang, Jing Sun, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Solution-Processed Physically Transient Resistive Memory Based on Magnesium Oxide," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 2, Feb. 2019. (doi:10.1109/LED.2018.2886380)</li>
                 <li>Jing Sun, Hong Wang, Zhan Wang, Fang Song, Qing Zhu, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Physically Transient Memristive Synapse With Short-Term Plasticity Based on Magnesium Oxide," <em>IEEE Electron Device Letter</em>, Vol. 40, no. 5, May. 2019. (doi:10.1109/LED.2019.2904752)</li>
                 <li>Quantan Wu, Guanhua Yang, Congyan Lu, Guangwei Xu; Jiawei Wang, <strong>Bingjie Dang</strong>, Yuxin Gong, Xuewen Shi, Xichen Chuai, Nianduan Lu, Di Geng, Hong Wang, Ling Li, and Ming Liu, "Room Temperature-Processed a-IGZO Schottky Diode for Rectifying Circuit and Bipolar 1D1R Crossbar Applications," <em>IEEE Transactions on Electron Devices</em>, Vol. 66, no. 9, Sept. 2019. (doi:10.1109/TED.2019.2928792)</li>
-            </ul>
+            </ol>
 
             <div class="year-title">2018</div>
-            <ul class="pub-list">
+            <ol class="pub-list">
                 <li><strong>Bingjie Dang</strong>, Quantan Wu, Fang Song, Jing Sun, Mei Yang, Xiaohua Ma, Hong Wang, and Yue Hao, "A bio-inspired physically transient/biodegradable synapse for security neuromorphic computing based on memristors," <em>Nanoscale</em>, 2018, 10, 20089-20095. (doi:10.1039/C8NR07442A)</li>
                 <li>Jing Sun, Hong Wang, Fang Song, Zhan Wang, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Physically Transient Threshold Switching Device Based on Magnesium Oxide for Security Application," <em>Small</em>, Vol. 14, no. 7, May. 2018. (doi: 10.1002/smll.201800945)</li>
                 <li>Jing Sun, Hong Wang, Fang Song, Zhan Wang, <strong>Bingjie Dang</strong>, Haixia Gao, Mei Yang, Xiaohua Ma, and Yue Hao, "Secure Electronics: Physically Transient Threshold Switching Device Based on Magnesium Oxide for Security Application," <em>Small</em>, 180094, May. 2018. (<strong>Cover</strong>, doi: 10.1002/smll.201870127105)</li>
-            </ul>
+            </ol>
         </div>
 
         <div id="research-page" class="page-section">
@@ -294,21 +290,14 @@
 
     <script>
         function switchTab(pageId) {
-            // 1. 隐藏所有页面内容
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.classList.remove('active'));
 
-            // 2. 取消所有按钮的高亮状态
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // 3. 显示目标页面
             document.getElementById(pageId).classList.add('active');
-
-            // 4. 高亮被点击的按钮
             event.target.classList.add('active');
-            
-            // 5. 将页面滚回顶部
             window.scrollTo(0, 0);
         }
     </script>
