@@ -1,53 +1,47 @@
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0a0a0a; /* 深色科技背景 */
-    color: white;
-    overflow-x: hidden;
+/* 静态简介样式 */
+.static-bio {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    margin: 20px 0;
 }
 
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.glass-container {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px); /* 玻璃拟态效果 */
-    max-width: 900px;
-    margin: 50px auto;
-    border-radius: 20px;
-    padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.profile-img {
-    width: 180px;
-    border-radius: 50%;
-    border: 3px solid #d2b4a0;
-    transition: transform 0.3s;
-}
-
-.profile-img:hover {
-    transform: scale(1.1) rotate(5deg); /* 悬浮缩放动画 */
-}
-
+/* 论文条目增强 */
 .pub-item {
-    background: rgba(255, 255, 255, 0.1);
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
-    transition: background 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #d2b4a0;
+    text-align: left;
+    transition: 0.3s;
 }
 
 .pub-item:hover {
-    background: rgba(210, 180, 160, 0.3);
+    background: rgba(210, 180, 160, 0.15);
+    transform: translateX(10px);
+}
+
+.pub-title {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.pub-authors {
+    display: block;
+    font-size: 0.95rem;
+    color: #bbb;
+}
+
+.pub-journal {
+    color: #d2b4a0; /* 突出期刊名 */
+    font-weight: 600;
+    font-style: italic;
+}
+
+.highlight {
+    border-left: 4px solid #ffcc00; /* 为 Nature Materials 等特别亮眼的文章加金边 */
 }
