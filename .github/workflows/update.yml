@@ -2,8 +2,8 @@ name: Update Google Scholar Citations
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
+    - cron: '0 0 * * *' # 每天 UTC 时间 00:00 自动运行一次
+  workflow_dispatch: # 保留这个，方便我们现在手动点击运行测试
 
 permissions:
   contents: write
@@ -20,10 +20,12 @@ jobs:
         with:
             python-version: '3.10'
 
-      - name: Install scholarly
-        run: pip install scholarly
+      - name: Install dependencies
+        run: pip install requests
 
       - name: Run python script
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: python update_citations.py
 
       - name: Commit and push changes
@@ -31,4 +33,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add citations.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update citations" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update citations via SerpApi" && git push)
