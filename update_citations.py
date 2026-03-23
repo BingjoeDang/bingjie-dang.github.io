@@ -14,8 +14,7 @@ def main():
         return
 
     try:
-        # 【核心升级】：使用分页循环抓取。start=0抓前20篇，start=20抓后20篇（总共支持40篇）
-        # 这样既能覆盖你的34篇文章，又能完美避开 num=100 导致的系统 Bug！
+        # 分页循环抓取：start=0抓前20篇，start=20抓后20篇（总共覆盖40篇）
         for start in [0, 20]:
             url = f"https://serpapi.com/search.json?engine=google_scholar_author&author_id={AUTHOR_ID}&hl=en&api_key={API_KEY}&start={start}&num=20"
             print(f"正在向 SerpApi 发送请求 (起始位置: 第 {start+1} 篇)...")
@@ -36,7 +35,7 @@ def main():
                     citations = article.get("cited_by", {}).get("value", 0)
                     citations_data.append({"title": title, "citations": citations})
                 
-                # 如果这一页返回的文章少于20篇，说明你的所有文章都已经抓完了，提前结束翻页
+                # 如果这一页返回的文章少于20篇，说明所有文章已抓完，提前结束翻页
                 if len(articles) < 20:
                     break
 
