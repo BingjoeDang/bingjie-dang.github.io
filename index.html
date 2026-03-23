@@ -273,7 +273,88 @@
             border-color: var(--link-blue);
         }
 
+        .contact-invite {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: #334155;
+            margin: 10px 0 18px;
+        }
+        .contact-card {
+            background: #fbfcfe;
+            border: 1px solid #edf1f7;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+            margin-top: 24px;
+        }
+        .contact-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .contact-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .contact-form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        .contact-form-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .contact-input,
+        .contact-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #d9e2ef;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 0.98rem;
+            color: #1f2937;
+            background: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .contact-input:focus,
+        .contact-textarea:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+        }
+        .contact-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        .contact-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #1a73e8 0%, #0f5ec4 100%);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(26,115,232,0.2);
+        }
+        .contact-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .contact-helper {
+            margin-top: 12px;
+            font-size: 0.92rem;
+            color: #64748b;
+        }
+
         @media (max-width: 900px) {
+            .contact-form-grid { grid-template-columns: 1fr; }
             .scholar-stats-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
             .scholar-banner-link { margin-left: 0; width: 100%; justify-content: center; }
         }
@@ -281,6 +362,7 @@
             .container { padding: 35px 22px; }
             .profile-section { flex-direction: column; text-align: center; }
             .social-icons { flex-direction: row; padding-right: 0; flex-wrap: wrap; }
+            .contact-card { padding: 18px; }
         }
 
     </style>
@@ -900,7 +982,7 @@
 
         async function updatePublicationCitations() {
             const publicationItems = [...document.querySelectorAll('.pub-list li')]
-                .filter(li => li.querySelector('em'));
+                .filter(li => li.querySelector('em') || li.innerText.length > 20);
 
             // 初始化所有 Badge
             publicationItems.forEach(li => {
@@ -922,8 +1004,10 @@
                 } else if (data.articles) {
                     citationList = data.articles; // 新格式
                     if (data.stats) {
-                        document.getElementById('total-citations-display').innerText = data.stats.total_citations || '-';
-                        document.getElementById('h-index-display').innerText = data.stats.h_index || '-';
+                        const totalEl = document.getElementById('total-citations-display');
+                        const hIndexEl = document.getElementById('h-index-display');
+                        if (totalEl) totalEl.innerText = data.stats.total_citations || '-';
+                        if (hIndexEl) hIndexEl.innerText = data.stats.h_index || '-';
                     }
                 }
 
@@ -959,8 +1043,10 @@
                     
                     const finalCount = bestMatch ? Number(bestMatch.count || 0) : 0;
                     
-                    badge.classList.remove('error', 'loading');
-                    badge.innerHTML = `<span class="en">Citations: ${finalCount}</span><span class="zh">引用：${finalCount}</span>`;
+                    if (badge) {
+                        badge.classList.remove('error', 'loading');
+                        badge.innerHTML = `<span class="en">Citations: ${finalCount}</span><span class="zh">引用：${finalCount}</span>`;
+                    }
                 });
             } catch (err) {
                 console.error('Failed to load citations data:', err);
