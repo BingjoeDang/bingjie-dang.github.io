@@ -979,36 +979,15 @@
             async src="//gc.zgo.at/count.js"></script>
 
     <script>
-        /* ================= Google Scholar citation loader (Real-time Proxy + Fallback) ================= */
+        /* ================= Google Scholar Citation Loader (Extreme Fuzzy Matching) ================= */
         const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
         const EMAILJS_SERVICE_ID = 'YOUR_EMAILJS_SERVICE_ID';
         const EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
         const CONTACT_RECEIVER_EMAIL = 'bingjiegang@gmail.com';
-        
-        // 你的 Google Scholar ID
-        const SCHOLAR_ID = 'Mfp83rUAAAAJ';
 
+        // 终极暴力清洗：去掉所有空格、标点符号、特殊符号，只保留纯小写字母和数字
         function normalizeTitle(text) {
-            return (text || '')
-                .replace(/[“”"]/g, '"')
-                .replace(/[‐‑–—]/g, '-')
-                .replace(/\s+/g, ' ')
-                .replace(/[，]/g, ',')
-                .trim()
-                .toLowerCase();
-        }
-
-        function extractPublicationTitle(text) {
-            const cleaned = (text || '').replace(/\s+/g, ' ').trim();
-            const quoted = cleaned.match(/["“]([^"”]+)["”]/);
-            if (quoted && quoted[1]) return quoted[1].trim();
-            return cleaned;
-        }
-
-        function buildPublicationKey(text) {
-            return normalizeTitle(extractPublicationTitle(text))
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/^-+|-+$/g, '');
+            return (text || '').toLowerCase().replace(/[^a-z0-9]/g, '');
         }
 
         function createCitationBadge() {
@@ -1016,39 +995,6 @@
             badge.className = 'citation-badge loading';
             badge.innerHTML = '<span class="en">Loading citations...</span><span class="zh">正在加载引用量...</span>';
             return badge;
-        }
-
-        // 使用公共代理服务实时抓取 HTML 并解析
-        async function fetchFromScholarProxy() {
-            // 添加 pagesize=100 参数确保一次性获取所有主要文章
-            const scholarUrl = `https://scholar.google.com/citations?user=${SCHOLAR_ID}&hl=en&pagesize=100`;
-            // 使用 allorigins 代理绕过跨域限制
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(scholarUrl)}`;
-            
-            const response = await fetch(proxyUrl);
-            if (!response.ok) throw new Error('Proxy network response was not ok');
-            const data = await response.json();
-            
-            // 将返回的 HTML 字符串解析为 DOM 对象
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data.contents, 'text/html');
-            
-            // 查找所有文章行
-            const rows = doc.querySelectorAll('.gsc_a_tr');
-            const citationMap = new Map();
-            
-            rows.forEach(row => {
-                const titleEl = row.querySelector('.gsc_a_at');
-                const citeEl = row.querySelector('.gsc_a_ac');
-                if (titleEl && citeEl) {
-                    const title = titleEl.textContent.trim();
-                    const citations = parseInt(citeEl.textContent.trim()) || 0;
-                    citationMap.set(buildPublicationKey(title), citations);
-                }
-            });
-            
-            if (citationMap.size === 0) throw new Error('No citations parsed (possibly blocked by Google Captcha)');
-            return citationMap;
         }
 
         async function updatePublicationCitations() {
@@ -1064,33 +1010,37 @@
             });
 
             try {
-                let citationMap;
+                // 读取 Actions 自动生成的 JSON
+                const response = await fetch(`citations.json?v=${Date.now()}`);
+                if (!response.ok) throw new Error('citations.json not found');
+                const data = await response.json();
                 
-                try {
-                    // 尝试 1：实时通过 CORS Proxy 抓取
-                    citationMap = await fetchFromScholarProxy();
-                    console.log("Successfully fetched real-time citations from Google Scholar.");
-                } catch (proxyErr) {
-                    console.warn("Real-time proxy fetch failed, falling back to local citations.json", proxyErr);
-                    
-                    // 尝试 2：如果被反爬虫拦截，无缝回退读取本地静态 json
-                    const response = await fetch(`citations.json?v=${Date.now()}`);
-                    if (!response.ok) throw new Error('citations.json not found');
-                    const data = await response.json();
-                    citationMap = new Map((Array.isArray(data) ? data : []).map(item => [item.key || buildPublicationKey(item.title || ''), Number(item.citations || 0)]));
-                }
+                // 清洗抓取到的 Scholar 标题
+                const citationList = (Array.isArray(data) ? data : []).map(item => ({
+                    cleanTitle: normalizeTitle(item.title || ''),
+                    count: Number(item.citations || 0)
+                })).filter(item => item.cleanTitle.length > 5); // 过滤掉异常空数据
 
-                // 渲染数据
                 publicationItems.forEach(li => {
                     const badge = li.querySelector('.citation-badge');
-                    const key = li.dataset.citeKey || buildPublicationKey(li.innerText);
-                    const count = citationMap.has(key) ? citationMap.get(key) : 0;
+                    // 获取当前网页中整个 <li> 的纯字母文本（包含作者、标题、期刊等所有内容）
+                    const liText = normalizeTitle(li.innerText);
+                    
+                    let finalCount = 0;
+                    for (const scholarItem of citationList) {
+                        // 核心逻辑：只要 Scholar 返回的纯字母串被包含在你的 HTML 纯字母串中，就算匹配成功！
+                        // 这样即使 Scholar 截断了标题（有省略号），也绝不会错过
+                        if (liText.includes(scholarItem.cleanTitle)) {
+                            finalCount = scholarItem.count;
+                            break; 
+                        }
+                    }
                     
                     badge.classList.remove('error', 'loading');
-                    badge.innerHTML = `<span class="en">Citations: ${count}</span><span class="zh">引用：${count}</span>`;
+                    badge.innerHTML = `<span class="en">Citations: ${finalCount}</span><span class="zh">引用：${finalCount}</span>`;
                 });
             } catch (err) {
-                // 如果两种方式都失败了，重置为 0
+                console.error('Failed to load citations data:', err);
                 publicationItems.forEach(li => {
                     const badge = li.querySelector('.citation-badge');
                     if (badge) {
@@ -1098,7 +1048,6 @@
                         badge.innerHTML = '<span class="en">Citations: 0</span><span class="zh">引用：0</span>';
                     }
                 });
-                console.error('Failed to load citations data:', err);
             }
         }
 
