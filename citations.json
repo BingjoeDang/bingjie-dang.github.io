@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "title": "An optoelectronic synapse based on α-In2Se3 with controllable temporal dynamics for multimode and multiscale reservoir computing",
+    "citations": 492
+  },
+  {
+    "title": "Multilayer Reservoir Computing Based on Ferroelectric α‐In2Se3 for Hierarchical Information Processing",
+    "citations": 177
+  },
+  {
+    "title": "Spike Encoding with Optic Sensory Neurons Enable a Pulse Coupled Neural Network for Ultraviolet Image Segmentation",
+    "citations": 117
+  },
+  {
+    "title": "A bio-inspired physically transient/biodegradable synapse for security neuromorphic computing based on memristors",
+    "citations": 101
+  },
+  {
+    "title": "Reconfigurable in-sensor processing based on a multi-phototransistor–one-memristor array",
+    "citations": 90
+  },
+  {
+    "title": "One‐phototransistor‐one‐memristor Array with High‐linearity Light‐tunable Weight for Optic Neuromorphic Computing",
+    "citations": 85
+  },
+  {
+    "title": "Physically transient threshold switching device based on magnesium oxide for security application",
+    "citations": 65
+  },
+  {
+    "title": "Stochastic neuron based on IGZO Schottky diodes for neuromorphic computing",
+    "citations": 48
+  },
+  {
+    "title": "Spike-Enabled Audio Learning in Multilevel SynapticMemristor Array-Based Spiking Neural Network",
+    "citations": 46
+  },
+  {
+    "title": "Full van der Waals ambipolar ferroelectric configurable optical hetero‐synapses for in‐sensor computing",
+    "citations": 37
+  },
+  {
+    "title": "Room temperature-processed a-IGZO Schottky diode for rectifying circuit and bipolar 1D1R crossbar applications",
+    "citations": 36
+  },
+  {
+    "title": "Physically transient true random number generators based on paired threshold switches enabling Monte Carlo method applications",
+    "citations": 35
+  },
+  {
+    "title": "Solution-processed physically transient resistive memory based on magnesium oxide",
+    "citations": 33
+  },
+  {
+    "title": "Physically transient memristor synapse based on embedding magnesium nanolayer in oxide for security neuromorphic electronics",
+    "citations": 32
+  },
+  {
+    "title": "Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons",
+    "citations": 29
+  },
+  {
+    "title": "Fully hardware memristive neuromorphic computing enabled by the integration of trainable dendritic neurons and high‐density RRAM chip",
+    "citations": 27
+  },
+  {
+    "title": "Physically transient memristive synapse with short-term plasticity based on magnesium oxide",
+    "citations": 25
+  },
+  {
+    "title": "Physically transient optic-neural synapse for secure in-sensor computing",
+    "citations": 21
+  },
+  {
+    "title": "Artificial Astrocyte Memristor with Recoverable Linearity for Neuromorphic Computing",
+    "citations": 18
+  },
+  {
+    "title": "Neuromorphic Artificial Vision Systems Based on Reconfigurable Ion‐Modulated Memtransistors",
+    "citations": 15
+  }
+]
