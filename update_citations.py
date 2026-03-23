@@ -11,33 +11,45 @@ def main():
 
     if not API_KEY:
         print("❌ 致命错误：未找到 SERPAPI_KEY，请检查 GitHub Secrets！")
-    else:
-        try:
-            # 【核心修复】：去掉了触发 Bug 的 &num=100，并加上 &hl=en 确保语言匹配
-            url = f"https://serpapi.com/search.json?engine=google_scholar_author&author_id={AUTHOR_ID}&hl=en&api_key={API_KEY}"
-            print("正在向 SerpApi 发送稳定版请求...")
+        return
+
+    try:
+        # 【核心升级】：使用分页循环抓取。start=0抓前20篇，start=20抓后20篇（总共支持40篇）
+        # 这样既能覆盖你的34篇文章，又能完美避开 num=100 导致的系统 Bug！
+        for start in [0, 20]:
+            url = f"https://serpapi.com/search.json?engine=google_scholar_author&author_id={AUTHOR_ID}&hl=en&api_key={API_KEY}&start={start}&num=20"
+            print(f"正在向 SerpApi 发送请求 (起始位置: 第 {start+1} 篇)...")
             response = requests.get(url)
             data = response.json()
 
             if "error" in data:
                 print(f"❌ SerpApi 官方报错: {data['error']}")
+                break
             elif "articles" not in data:
-                print("⚠️ 未找到 articles 字段，API 返回的真实数据是：")
-                print(json.dumps(data, indent=2, ensure_ascii=False))
+                print("⚠️ 当前页未找到 articles 字段，可能已经到底了。")
+                break
             else:
                 articles = data["articles"]
-                print(f"✅ 成功获取到 {len(articles)} 篇文章的数据！")
+                print(f"✅ 当前页成功获取到 {len(articles)} 篇文章的数据！")
                 for article in articles:
                     title = article.get("title", "")
                     citations = article.get("cited_by", {}).get("value", 0)
                     citations_data.append({"title": title, "citations": citations})
+                
+                # 如果这一页返回的文章少于20篇，说明你的所有文章都已经抓完了，提前结束翻页
+                if len(articles) < 20:
+                    break
 
-        except Exception as e:
-            print(f"❌ 请求过程中发生代码异常: {e}")
+    except Exception as e:
+        print(f"❌ 请求过程中发生代码异常: {e}")
 
-    print("正在保存 citations.json 文件...")
+    # 简单去重（防止分页边界偶发的重复）
+    unique_data = {item['title']: item['citations'] for item in citations_data}
+    final_citations_data = [{"title": k, "citations": v} for k, v in unique_data.items()]
+
+    print(f"正在保存 citations.json 文件，本次共成功抓取并汇总了 {len(final_citations_data)} 篇文章！")
     with open('citations.json', 'w', encoding='utf-8') as f:
-        json.dump(citations_data, f, ensure_ascii=False, indent=2)
+        json.dump(final_citations_data, f, ensure_ascii=False, indent=2)
     print("✅ 文件保存完毕！")
 
 if __name__ == "__main__":
