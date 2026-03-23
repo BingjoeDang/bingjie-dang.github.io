@@ -202,7 +202,7 @@
 
         footer { text-align: center; padding: 30px; color: #888; font-size: 0.9rem; position: relative; z-index: 1;}
 
-        /* ================= Citation badges & analytics ================= */
+        /* ================= Citation badges ================= */
         .pub-list li { position: relative; }
         .citation-badge {
             display: inline-flex;
@@ -224,7 +224,7 @@
             color: #7a8699;
             border-color: #e5e7eb;
         }
-        
+
         /* === Scholar Stats Banner (Total Citations & H-index) === */
         .scholar-stats-banner {
             display: flex;
@@ -273,125 +273,7 @@
             border-color: var(--link-blue);
         }
 
-        .analytics-section { margin-top: 45px; }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .stat-card {
-            background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
-            border: 1px solid rgba(26,115,232,0.12);
-            border-radius: 14px;
-            padding: 18px 18px 16px;
-            box-shadow: 0 6px 18px rgba(26,115,232,0.06);
-        }
-        .stat-card .stat-label {
-            font-size: 0.9rem;
-            color: #5f6368;
-            margin-bottom: 8px;
-        }
-        .stat-card .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent-dark);
-            line-height: 1.1;
-        }
-        .chart-card {
-            background: #fbfcfe;
-            border: 1px solid #edf1f7;
-            border-radius: 14px;
-            padding: 18px 18px 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-        }
-        .chart-card canvas {
-            width: 100% !important;
-            max-height: 340px;
-        }
-        .contact-invite {
-            font-size: 1.02rem;
-            line-height: 1.8;
-            color: #334155;
-            margin: 10px 0 18px;
-        }
-        .contact-card {
-            background: #fbfcfe;
-            border: 1px solid #edf1f7;
-            border-radius: 14px;
-            padding: 24px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-            margin-top: 24px;
-        }
-        .contact-form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 18px;
-        }
-        .contact-form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .contact-form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        .contact-form-label {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #334155;
-        }
-        .contact-input,
-        .contact-textarea {
-            width: 100%;
-            box-sizing: border-box;
-            border: 1px solid #d9e2ef;
-            border-radius: 10px;
-            padding: 12px 14px;
-            font-size: 0.98rem;
-            color: #1f2937;
-            background: #fff;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .contact-input:focus,
-        .contact-textarea:focus {
-            outline: none;
-            border-color: #1a73e8;
-            box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
-        }
-        .contact-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        .contact-submit {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 160px;
-            padding: 12px 22px;
-            border: none;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #1a73e8 0%, #0f5ec4 100%);
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 8px 18px rgba(26,115,232,0.2);
-        }
-        .contact-submit:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        .contact-helper {
-            margin-top: 12px;
-            font-size: 0.92rem;
-            color: #64748b;
-        }
-
         @media (max-width: 900px) {
-            .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .contact-form-grid { grid-template-columns: 1fr; }
             .scholar-stats-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
             .scholar-banner-link { margin-left: 0; width: 100%; justify-content: center; }
         }
@@ -399,8 +281,6 @@
             .container { padding: 35px 22px; }
             .profile-section { flex-direction: column; text-align: center; }
             .social-icons { flex-direction: row; padding-right: 0; flex-wrap: wrap; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .contact-card { padding: 18px; }
         }
 
     </style>
@@ -523,35 +403,6 @@
                     <li><strong>Bingjie Dang</strong>, Keqin Liu, xulei wu, Zhen Yang, Liying Xu, Yuchao Yang, Ru Huang, "One-phototransistor-one-memristor Array with High-linearityLight-tunable Weight for Optic Neuromorphic Computing," <em>Advanced Materials</em>, 2204844, 2022.（Cover Article）</li>
                 </ol>
             </section>
-            <section class="analytics-section">
-                <h2 class="section-title">
-                    <span class="en">Visits</span>
-                    <span class="zh">访问量</span>
-                </h2>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-label"><span class="en">Today</span><span class="zh">今日访问</span></div>
-                        <div class="stat-value" id="stat-today">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label"><span class="en">This Month</span><span class="zh">本月访问</span></div>
-                        <div class="stat-value" id="stat-month">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label"><span class="en">This Year</span><span class="zh">本年访问</span></div>
-                        <div class="stat-value" id="stat-year">0</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-label"><span class="en">All Time</span><span class="zh">累计访问</span></div>
-                        <div class="stat-value" id="stat-total">0</div>
-                    </div>
-                </div>
-                <div class="chart-card">
-                    <canvas id="visitsChart"></canvas>
-                    <div id="analyticsStatus" class="analytics-status" style="display:none;">0</div>
-                </div>
-            </section>
-
         </div>
 
         <div id="memristor-page" class="page-section">
@@ -664,7 +515,7 @@
                 <li>Jinxuan Bai, Dawei He, <strong>Bingjie Dang</strong>, Keqin Liu, Zhen Yang, Jiarong Wang, Xiaoxian Zhang, Yongsheng Wang, Yaoyu Tao, Yuchao Yang, Full van der Waals ambipolar ferroelectric configurable optical hetero-synapses for in-sensor computing. <em>Advanced Materials</em>, 2401060, 2024.</li>
                 <li>Keqin Liu, <strong>Bingjie Dang</strong>, Zhiyu Yang, Teng Zhang, Zhen Yang, Jinxuan Bai, Zelun Pan, Ru Huang, Yuchao Yang, Tuning the ferroelectricity of Hf0.5Zr0.5O2 with alloy electrodes, <em>Science China Information Sciences</em> 67, 2024 (8), 1-10.</li>
                 <li>Xulei Wu‡, <strong>Bingjie Dang‡</strong>, Teng Zhang, Xiulong Wu, Yuchao Yang, Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons, <em>Science Advances</em> 10, 2024, eadl2767. <strong>‡Equal contributions</strong></li>
-                <li>Zhen Yang, Wenshuo Yue, Chang Liu, Yaoyu Tao, Pek Jun Tiw, Longhao Yan, Yuxiang Yang, Teng Zhang, <strong>Bingjie Dang</strong>, Keqin Liu, Xiaodong He, Yongqin Wu, Weihai Bu, Kai Zheng, Jin Kang, Ru Huang, Yuchao Yang, Fully Hardware Memristive Neuromorphic Computing Enabled by the Integration of Trainable Dendritic Neurons and High-Density RRAM Chip. <em>Advanced Functional Materials</em>, 2024, 2405618.</li>
+                <li>Zhen Yang, Wenshuo Yue, Chang Liu, Yaoyu Tao, Pek Jun Tiw, Longhao Yan, Yuxiang Yang, Teng Zhang, <strong>Bingjie Dang</strong>, Keqin Liu, Xiaodong He, Yongqin Wu, Weihai Bu, Kai Zheng, Jin Kang, Ru Huang, Yuchao Yang, Fully Hardware memristive Neuromorphic Computing Enabled by the Integration of Trainable Dendritic Neurons and High-Density RRAM Chip. <em>Advanced Functional Materials</em>, 2024, 2405618.</li>
             </ol>
 
             <div class="year-title">2023</div>
@@ -968,8 +819,11 @@
 
     </div>
 
+    <footer>
+        <p>&copy; 2026 Dr. Bingjie Dang. All Rights Reserved.</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         // 初始化粒子特效
@@ -1025,9 +879,6 @@
         }
     </script>
 
-    <script data-goatcounter="https://YOUR_GOATCOUNTER_CODE.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
-
     <script>
         /* ================= Google Scholar Citation Loader (AI Bag-of-Words Smart Matching & Stats) ================= */
         const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
@@ -1065,13 +916,11 @@
                 if (!response.ok) throw new Error('citations.json not found');
                 const data = await response.json();
                 
-                // 【核心更新】：兼容旧版的数组格式，以及新版的包含 stats 的对象格式
                 let citationList = [];
                 if (Array.isArray(data)) {
                     citationList = data; // 旧格式
                 } else if (data.articles) {
                     citationList = data.articles; // 新格式
-                    // 填入 Total Citations 和 H-index
                     if (data.stats) {
                         document.getElementById('total-citations-display').innerText = data.stats.total_citations || '-';
                         document.getElementById('h-index-display').innerText = data.stats.h_index || '-';
@@ -1125,95 +974,6 @@
             }
         }
 
-        /* ================= GoatCounter analytics ================= */
-        const GOATCOUNTER_CODE = 'bingjiedang';
-        const GOATCOUNTER_BASE = GOATCOUNTER_CODE === 'bingjiedang'
-            ? ''
-            : `https://${GOATCOUNTER_CODE}.goatcounter.com`;
-
-        let visitsChart = null;
-
-        function formatNumber(n) {
-            return new Intl.NumberFormat().format(Number(n || 0));
-        }
-
-        function setStatValue(id, value) {
-            const el = document.getElementById(id);
-            if (el) el.textContent = formatNumber(value);
-        }
-
-        async function fetchGoatCounterCount(params = {}) {
-            if (!GOATCOUNTER_BASE) return 0;
-            const url = new URL(`${GOATCOUNTER_BASE}/counter/TOTAL.json`);
-            Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-            const res = await fetch(url.toString());
-            if (!res.ok) throw new Error('Counter request failed');
-            const data = await res.json();
-            const count = String(data.count || '0').replace(/,/g, '');
-            return Number(count);
-        }
-
-        function upsertChart(labels, values) {
-            const ctx = document.getElementById('visitsChart');
-            if (!ctx) return;
-            if (visitsChart) visitsChart.destroy();
-
-            visitsChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels,
-                    datasets: [{
-                        data: values,
-                        borderRadius: 8,
-                        borderWidth: 1,
-                        backgroundColor: 'rgba(26,115,232,0.18)',
-                        borderColor: 'rgba(26,115,232,0.5)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) { return formatNumber(value); }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        async function updateAnalyticsDashboard() {
-            setStatValue('stat-today', 0);
-            setStatValue('stat-month', 0);
-            setStatValue('stat-year', 0);
-            setStatValue('stat-total', 0);
-            upsertChart(['Today', 'Month', 'Year', 'Total'], [0, 0, 0, 0]);
-
-            if (!GOATCOUNTER_BASE) return;
-
-            try {
-                const today = new Date().toISOString().slice(0, 10);
-                const [todayCount, monthCount, yearCount, totalCount] = await Promise.all([
-                    fetchGoatCounterCount({ start: today }),
-                    fetchGoatCounterCount({ start: 'month' }),
-                    fetchGoatCounterCount({ start: 'year' }),
-                    fetchGoatCounterCount()
-                ]);
-
-                setStatValue('stat-today', todayCount);
-                setStatValue('stat-month', monthCount);
-                setStatValue('stat-year', yearCount);
-                setStatValue('stat-total', totalCount);
-                upsertChart(['Today', 'Month', 'Year', 'Total'], [todayCount, monthCount, yearCount, totalCount]);
-            } catch (err) {
-                console.error('Unable to load GoatCounter data:', err);
-            }
-        }
-
         /* ================= Contact form ================= */
         function initContactForm() {
             const helper = document.getElementById('contact-helper');
@@ -1228,10 +988,7 @@
                 && EMAILJS_TEMPLATE_ID !== 'YOUR_EMAILJS_TEMPLATE_ID'
                 && window.emailjs;
 
-            if (!emailReady) {
-                if (helper) helper.textContent = '';
-                return;
-            }
+            if (!emailReady) return;
 
             emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -1261,7 +1018,6 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             updatePublicationCitations();
-            updateAnalyticsDashboard();
             initContactForm();
         });
     </script>
