@@ -1,302 +1,156 @@
-/* ================= 更完整的移动端适配 ================= */
+/* ================= 1. 基础变量与全局设置 ================= */
+:root {
+    --bg-color: #f4f6f9;
+    --content-bg: #ffffff;
+    --text-color: #2c3e50;
+    --header-bg: #ffffff;
+    --button-hover: #e8f0fe;
+    --link-blue: #1a73e8;
+    --accent-dark: #0b5394;
+}
+
 html, body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
+img { max-width: 100%; height: auto; }
 
-/* header 在手机允许换行 */
+/* 中英文显示控制 */
+html[lang="en"] .zh { display: none !important; }
+html[lang="zh"] .en { display: none !important; }
+
+#particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
+
+/* ================= 2. 导航栏与页头 ================= */
 header {
+    background-color: var(--header-bg);
+    padding: 12px 5%;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     flex-wrap: wrap;
     gap: 10px;
 }
 
-/* 导航整体允许换行，避免挤爆 */
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-}
-
 .site-title {
-    margin-right: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-right: auto;
+    letter-spacing: 0.5px;
 }
 
-/* 内容区域在平板/手机减小边距 */
-.container {
-    width: min(1000px, calc(100% - 24px));
-    margin: 20px auto;
-    padding: 32px 20px;
-}
-
-/* 研究区和个人信息区都允许更自然收缩 */
-.profile-section,
-.research-content {
-    flex-wrap: wrap;
-}
-
-.profile-text,
-.research-text,
-.research-image-box {
-    min-width: 0;
-}
-
-/* 表格在手机可横向滚动，避免被压坏 */
-.cv-table,
-table {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* 下拉菜单在手机不要靠 hover */
-@media (hover: none) and (pointer: coarse) {
-    .dropdown:hover .dropdown-content {
-        display: none;
-    }
-}
-
-/* ================= 平板 ================= */
-@media (max-width: 900px) {
-    header {
-        padding: 12px 16px;
-    }
-
-    .container {
-        padding: 28px 18px;
-    }
-
-    .profile-img {
-        width: 180px;
-        height: 180px;
-    }
-
-    .research-text,
-    .research-image-box {
-        flex: 1 1 100%;
-    }
-
-    .nav-btn {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-}
-
-/* ================= 手机 ================= */
-@media (max-width: 720px) {
-    header {
-        position: sticky;
-        top: 0;
-    }
-
-    .site-title {
-        width: 100%;
-        text-align: center;
-        font-size: 1.15rem;
-        margin-bottom: 4px;
-    }
-
-    nav {
-        justify-content: center;
-    }
-
-    .nav-btn {
-        padding: 8px 10px;
-        font-size: 0.82rem;
-        border-radius: 999px;
-    }
-
-    .lang-switch-btn {
-        margin-left: 0;
-        padding: 6px 10px;
-        font-size: 0.8rem;
-    }
-
-    .container {
-        width: calc(100% - 16px);
-        margin: 12px auto;
-        padding: 20px 14px;
-        border-radius: 10px;
-    }
-
-    .profile-section {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-    .profile-img {
-        width: 140px;
-        height: 140px;
-    }
-
-    .social-icons {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 14px;
-        padding-right: 0;
-    }
-
-    .section-title {
-        font-size: 1.2rem;
-    }
-
-    .year-title {
-        font-size: 1rem;
-        padding: 4px 10px;
-    }
-
-    .profile-text,
-    .research-text,
-    .contact-invite,
-    .pub-list li,
-    .cv-table,
-    .cv-table td,
-    .cv-table th {
-        font-size: 0.95rem;
-    }
-
-    .research-content {
-        gap: 18px;
-    }
-
-    .research-image-box {
-        min-width: 0;
-        padding: 24px 14px;
-    }
-
-    .scholar-stats-banner {
-        padding: 14px;
-        gap: 10px;
-    }
-
-    .scholar-stat-value {
-        font-size: 1.3rem;
-    }
-
-    .contact-card {
-        padding: 16px;
-    }
-
-    .contact-input,
-    .contact-textarea {
-        font-size: 16px; /* 防止 iPhone 自动放大 */
-    }
-
-    footer {
-        padding: 20px 12px;
-        font-size: 0.82rem;
-    }
-}
-
-/* ================= 超小屏手机 ================= */
-@media (max-width: 480px) {
-    .container {
-        padding: 16px 12px;
-    }
-
-    .nav-btn {
-        font-size: 0.76rem;
-        padding: 7px 9px;
-    }
-
-    .profile-img {
-        width: 120px;
-        height: 120px;
-    }
-
-    .section-title {
-        font-size: 1.08rem;
-    }
-
-    .pub-list {
-        padding-left: 18px;
-    }
-}
-
-/* ================= 汉堡菜单响应式样式 ================= */
-
-/* 默认隐藏手机端菜单图标 */
 .menu-toggle {
-    display: none;
+    display: none; /* 电脑端隐藏 */
     font-size: 1.5rem;
     color: var(--accent-dark);
     cursor: pointer;
     padding: 5px;
 }
 
+nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav-btn {
+    background: none; border: none; color: #5f6368;
+    font-size: 0.95rem; font-weight: 600; padding: 10px 18px;
+    border-radius: 6px; cursor: pointer; transition: all 0.2s ease;
+    white-space: nowrap; font-family: inherit;
+}
+
+.nav-btn:hover { background-color: var(--button-hover); color: var(--link-blue); }
+
+nav > .nav-btn.active, .dropdown.active > .nav-btn {
+    color: var(--link-blue); border-bottom: 3px solid var(--link-blue);
+    border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+}
+
+.lang-switch-btn {
+    background-color: var(--link-blue); color: #fff; border: none;
+    padding: 6px 12px; border-radius: 20px; font-size: 0.85rem;
+    font-weight: bold; cursor: pointer; margin-left: 15px;
+}
+
+/* ================= 3. 下拉菜单与内容区 ================= */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+    display: none; position: absolute; background-color: #ffffff;
+    min-width: 240px; box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    z-index: 1001; border-radius: 8px; top: 100%; left: 0; padding: 8px 0;
+}
+.dropdown:hover .dropdown-content { display: block; animation: fadeInDrop 0.2s ease; }
+@keyframes fadeInDrop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+.container {
+    position: relative; z-index: 1;
+    width: min(1000px, calc(100% - 24px));
+    margin: 40px auto; background-color: var(--content-bg);
+    padding: 60px 80px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    min-height: 70vh; border-radius: 12px;
+}
+
+/* ================= 4. ESI 勋章与引用样式 ================= */
+.esi-badge {
+    display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px;
+    border-radius: 4px; font-size: 0.75rem; font-weight: bold;
+    margin-left: 6px; text-transform: uppercase; vertical-align: middle;
+}
+.highly-cited { background-color: #f3e5f5; color: #7b1fa2; border: 1px solid #ce93d8; }
+.hot-paper { background-color: #ffebee; color: #d32f2f; border: 1px solid #ef9a9a; }
+
+/* ================= 5. 移动端适配 (Media Queries) ================= */
+
+/* 平板端适配 */
 @media (max-width: 900px) {
-    header {
-        justify-content: space-between;
-        padding: 10px 5%;
-    }
+    header { justify-content: space-between; padding: 12px 16px; }
+    .menu-toggle { display: block; order: 2; }
+    .site-title { order: 1; margin-right: 0; }
 
-    .menu-toggle {
-        display: block; /* 手机端显示图标 */
-        order: 2;
-    }
-
-    .site-title {
-        order: 1;
-    }
-
-    /* 手机端导航栏变为垂直下拉列表 */
     nav {
-        display: none; /* 默认隐藏 */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #ffffff;
-        flex-direction: column;
-        gap: 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        padding: 10px 0;
-        border-top: 1px solid #eee;
+        display: none; position: absolute; top: 100%; left: 0;
+        width: 100%; background-color: #ffffff; flex-direction: column;
+        gap: 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); padding: 10px 0; border-top: 1px solid #eee;
     }
+    nav.show { display: flex; }
 
-    /* 当激活时显示导航栏 */
-    nav.show {
-        display: flex;
-    }
+    .nav-btn { width: 100%; text-align: left; padding: 15px 25px; border-radius: 0; font-size: 0.9rem; }
+    .nav-btn.active { border-bottom: none; border-left: 4px solid var(--link-blue); background-color: var(--button-hover); }
+    .lang-switch-btn { margin: 10px 25px; width: fit-content; }
 
-    .nav-btn {
-        width: 100%;
-        text-align: left;
-        padding: 15px 25px;
-        border-radius: 0;
-    }
+    .dropdown-content { position: static; box-shadow: none; background-color: #f9fafb; padding-left: 20px; display: block; }
+    .container { padding: 32px 20px; }
+    .profile-img { width: 180px; height: 180px; }
+    .profile-section, .research-content { flex-direction: column; text-align: center; }
+}
 
-    .nav-btn.active {
-        border-bottom: none;
-        border-left: 4px solid var(--link-blue);
-        background-color: var(--button-hover);
-    }
+/* 手机端适配 */
+@media (max-width: 720px) {
+    .site-title { font-size: 1.15rem; }
+    .container { width: calc(100% - 16px); margin: 12px auto; padding: 20px 14px; border-radius: 10px; }
+    .profile-img { width: 140px; height: 140px; }
+    .social-icons { flex-direction: row; justify-content: center; gap: 14px; padding-right: 0; }
+    .section-title { font-size: 1.2rem; }
+    .cv-table, table { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .contact-input, .contact-textarea { font-size: 16px; } /* 解决 iOS 自动缩放 */
+}
 
-    /* 语言切换按钮在手机端的间距调整 */
-    .lang-switch-btn {
-        margin: 10px 25px;
-        width: fit-content;
-    }
-
-    /* 下拉菜单在手机端的适配 */
-    .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background-color: #f9fafb;
-        padding-left: 20px;
-        display: block; /* 手机端直接展开更方便使用 */
-    }
+/* 超小屏适配 */
+@media (max-width: 480px) {
+    .container { padding: 16px 12px; }
+    .nav-btn { font-size: 0.76rem; padding: 10px 15px; }
 }
