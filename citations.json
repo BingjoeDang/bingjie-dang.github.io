@@ -1,16 +1,16 @@
 {
   "stats": {
-    "total_citations": 1839,
+    "total_citations": 1847,
     "h_index": 19
   },
   "articles": [
     {
       "title": "An optoelectronic synapse based on α-In2Se3 with controllable temporal dynamics for multimode and multiscale reservoir computing",
-      "citations": 553
+      "citations": 557
     },
     {
       "title": "Multilayer Reservoir Computing Based on Ferroelectric α‐In2Se3 for Hierarchical Information Processing",
-      "citations": 192
+      "citations": 193
     },
     {
       "title": "Reconfigurable in-sensor processing based on a multi-phototransistor–one-memristor array",
@@ -34,7 +34,7 @@
     },
     {
       "title": "Stochastic neuron based on IGZO Schottky diodes for neuromorphic computing",
-      "citations": 53
+      "citations": 54
     },
     {
       "title": "Spike-Enabled Audio Learning in Multilevel SynapticMemristor Array-Based Spiking Neural Network",
@@ -42,7 +42,7 @@
     },
     {
       "title": "Full van der Waals ambipolar ferroelectric configurable optical hetero‐synapses for in‐sensor computing",
-      "citations": 46
+      "citations": 47
     },
     {
       "title": "Spatiotemporal audio feature extraction with dynamic memristor-based time-surface neurons",
@@ -66,7 +66,7 @@
     },
     {
       "title": "Fully hardware memristive neuromorphic computing enabled by the integration of trainable dendritic neurons and high‐density RRAM chip",
-      "citations": 30
+      "citations": 31
     },
     {
       "title": "Physically transient memristive synapse with short-term plasticity based on magnesium oxide",
